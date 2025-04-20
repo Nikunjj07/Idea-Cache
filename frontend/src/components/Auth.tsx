@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 import { LabelInput } from "./InputBox"
 import { useState } from "react"
 import { SignupType } from "@nik44/common-app"
 import { SignButton } from "./Button"
+import axios from "axios"
+import { BACKEND_URL } from "../config"
 
 export const Auth = ({type}:{type: "signup" | "signin"})=>{
 
@@ -12,24 +14,38 @@ export const Auth = ({type}:{type: "signup" | "signin"})=>{
         password: "",
     })
 
+    async function sendRequest(){
+        try{
+            const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type === "signup"? "signup": "signin"}`)
+            const jwt = response.data;
+            localStorage.setItem("token",jwt);
+            Navigate({"to":"/blogs"})
+
+        }catch(e){
+            console.log(e);
+        }
+    }
 
     return <div className="h-screen flex flex-col justify-center">
         <div className="flex  justify-center">
             <div >
                 <div className="">
                     <div className="font-bold text-3xl text-center px-10">
-                        Create an account
+                        {type == "signin"? "Welcome Back!":"Create an Account"}
                     </div>
                     <div className="font text-slate-400 text-center mt-2">
-                        Already have an account? <Link className="underline ml-1" to={"/signin"}>Login</Link>
+                        {type == "signin"? "Don't have an account?":"Already have an account?"} 
+                        <Link className="underline ml-1" to={type == "signin"? "/signup":"/signin"}>
+                            {type == "signin"?"Signup":"Login"}
+                        </Link>
                     </div>
                     <div className="mt-4">
-                        <LabelInput label="Name" placeholder="Name" onChange={(e)=>{
+                        {type == "signup"? <LabelInput label="Name" placeholder="Name" onChange={(e)=>{
                             setPostInput({
                                 ...postInput,
                                 name: e.target.value,
                             })
-                        }}/>
+                        }}/> : null }
                         <LabelInput label="Username" placeholder="Username" onChange={(e)=>{
                             setPostInput({
                                 ...postInput,
@@ -42,7 +58,7 @@ export const Auth = ({type}:{type: "signup" | "signin"})=>{
                                 password: e.target.value,
                             })
                         }}/>
-                        <SignButton label={type == "signup"? "SignUp":"SignIn"}/>
+                        <SignButton label={type == "signup"? "Sign Up":"Sign In"}/>
                     </div>
                 </div>
             </div>
