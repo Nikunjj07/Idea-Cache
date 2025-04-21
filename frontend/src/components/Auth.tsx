@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { LabelInput } from "./InputBox"
 import { useState } from "react"
 import { SignupType } from "@nik44/common-app"

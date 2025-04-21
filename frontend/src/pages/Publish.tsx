@@ -20,7 +20,7 @@ export const Publish = ()=>{
                 }}/>
                 <div className="flex w-full justify-between py-1.5">
                     <div className="flex gap-2">
-                        <button onClick={async(e)=>{
+                        <button onClick={async()=>{
                             const response = await axios.post(`${BACKEND_URL}/api/v1/blog`,{
                                 title: title,
                                 content: content 
