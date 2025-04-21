@@ -29,14 +29,14 @@ export const blogRouter = new Hono<{
 // });
 
 blogRouter.use('*', async (c, next) => {  
-    const authHeader = c.req.header("authorization") || "";
+    const authHeader = c.req.header("Authorization") || "";
 
-    if (!authHeader.startsWith("Bearer ")) {
-      return c.json({ error: "Missing or invalid auth header" }, 401);
-    }
+    // if (!authHeader.startsWith("Bearer ")) {
+    //   return c.json({ error: "Missing or invalid auth header" }, 401);
+    // }
   
-    const token = authHeader.split(" ")[1];
-    const payload = await verify(token, c.env.JWT_SECRET);
+    // const token = authHeader.split(" ")[1];
+    const payload = await verify(authHeader, c.env.JWT_SECRET);
   
     if (!payload || !payload.id) {
       c.status(403);
@@ -95,7 +95,18 @@ blogRouter.get('/bulk',async (c)=>{
         datasourceUrl: c.env.DATABASE_URL,
       }).$extends(withAccelerate());
     
-    const blogs= await prisma.post.findMany();
+    const blogs= await prisma.post.findMany({
+        select:{
+            content: true,
+            title: true,
+            id: true,
+            author: {
+                select:{
+                    name:true
+                }
+            }
+        }
+    });
     console.log(blogs)
     return c.json({
         blogs
