@@ -13,21 +13,6 @@ export const blogRouter = new Hono<{
     }
 }>();
 
-// blogRouter.use('api/v1/blog/',async (c,next) => {
-//     const header = c.req.header("authorization") || ""
-//     const token = header.split("")[1];
-//     const payload = await verify(token,c.env.JWT_SECRET);
-
-//     if (!payload){
-//         return c.json({
-//             error:"Unauthorized"
-//         })
-//     }
-//     console.log("jwt_payload",payload);//
-//     c.set('userId',payload);
-//     await next()
-// });
-
 blogRouter.use('*', async (c, next) => {  
     const authHeader = c.req.header("Authorization") || "";
 
@@ -107,7 +92,6 @@ blogRouter.get('/bulk',async (c)=>{
             }
         }
     });
-    console.log(blogs)
     return c.json({
         blogs
     })

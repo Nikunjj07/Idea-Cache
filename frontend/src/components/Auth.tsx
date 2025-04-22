@@ -46,7 +46,7 @@ export const Auth = ({type}:{type: "signup" | "signin"})=>{
                                 name: e.target.value,
                             })
                         }}/> : null }
-                        <LabelInput label="Username" placeholder="Username" onChange={(e)=>{
+                        <LabelInput label="Email" placeholder="Email" onChange={(e)=>{
                             setPostInput({
                                 ...postInput,
                                 email: e.target.value,
@@ -58,7 +58,7 @@ export const Auth = ({type}:{type: "signup" | "signin"})=>{
                                 password: e.target.value,
                             })
                         }}/>
-                        <button onClick={sendRequest} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full">{type == "signup"? "Sign Up":"Sign In"}</button>
+                        <button onClick={sendRequest} type="button" className="mt-4 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full">{type == "signup"? "Sign Up":"Sign In"}</button>
                     </div>
                 </div>
             </div>

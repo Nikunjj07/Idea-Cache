@@ -14,7 +14,7 @@ export const BlogCard = ({
     content,
     publishedDate,
     id
-}: BlogCardType)=>{
+    }: BlogCardType)=>{
     return <Link to={`/blog/${id}`}>
         <div className="border-b border-slate-200 p-4 w-screen max-w-2xl cursor-pointer ">
             <div className="flex pb-2">
