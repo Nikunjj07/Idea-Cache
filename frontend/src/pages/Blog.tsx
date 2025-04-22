@@ -10,7 +10,7 @@ export const Blog = ()=>{
     });
 
     if(loading || !blog){
-        return <div className="h-screen flex flex-col justify-center">
+        return <div className="h-screen flex flex-col justify-center px-4">
             <div className="flex justify-center">
                 <Spinner/>
             </div>

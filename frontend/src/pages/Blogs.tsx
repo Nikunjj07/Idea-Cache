@@ -27,7 +27,7 @@ export const Blogs = ()=>{
         <AppBar />
                 {
                     blogs.map(blog=>(
-                        <div className="flex justify-center">
+                        <div className="flex justify-center px-4">
                             <BlogCard 
                                 id ={blog.id}
                                 authorName={blog.author.name || "Anonymous User"}

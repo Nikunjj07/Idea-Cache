@@ -8,10 +8,10 @@ export const Quote = ()=>{
                     Rage, rage against the dying of the light.
                 </div>
                 <div className="text-left max-w-md text-xl font-bold mt-4">
-                    Julias Winfield
+                    Dylan Thomas
                 </div>
                 <div className="text-left max-w-md text-lg font-normal text-slate-400">
-                    CEO, Acme Inc
+                    1914 - 1953
                 </div>
             </div>
         </div>
